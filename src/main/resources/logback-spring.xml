@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+    <property name="CONSOLE_PATTERN"
+              value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS, Asia/Seoul}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) [${java.rmi.server.hostname:-127.0.0.1}] [${nd.hostname:-localhost}] %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr([%class{5} > %method:%line]){magenta} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
+
+    <!-- console Log -->
+    <appender name="CONSOLE_APPENDER" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${CONSOLE_PATTERN}</pattern>
+            <charset>utf8</charset>
+        </encoder>
+    </appender>
+
+    <!-- 로그 레벨 설정 -->
+    <!--  <logger name="java.sql" level="INFO" />
+      <logger name="org.apache" level="WARN" />
+      <logger name="org.hibernate" level="INFO" />
+      <logger name="org.mybatis.spring" level="INFO" />
+      <logger name="org.springframework" level="INFO" />-->
+
+
+    <!-- spring profiles 에 따른 로그 레벨 설정 (spring boot 에서만 설정 가능함.) -->
+    <springProfile name="local">
+        <logger name="com.choimin" level="DEBUG"/>
+
+        <!-- 정의 되지 않은 logger 들에게 일괄 적용됨 -->
+        <root level="INFO">
+            <appender-ref ref="CONSOLE_APPENDER"/>
+        </root>
+
+        <!-- SQL문 만을 로그로 남기며, PreparedStatement일 경우 관련된 argument 값으로 대체된 SQL문 보여짐 -->
+        <logger name="jdbc.sqlonly" level="DEBUG"/>
+
+        <!--jdbc.sqltiming : SQL문과 해당 SQL을 실행시키는데 수행된 시간 정보(milliseconds)를 포함한다. -->
+        <logger name="jdbc.sqltiming" level="OFF"/>
+
+        <!--  ResultSet을 제외한 모든 JDBC 호출 정보를 로그로 남긴다. 많은 양의 로그가 생성되므로 특별히 JDBC 문제를 추적해야 할 필요가 있는 경우를 제외하고는 사용을 권장하지 않는다.  -->
+        <logger name="jdbc.audit" level="OFF"/>
+
+        <!-- ResultSet을 포함한 모든 JDBC 호출 정보를 로그로 남기므로 매우 방대한 양의 로그가 생성된다. -->
+        <logger name="jdbc.resultset" level="OFF"/>
+
+        <!--결과 테이블로 그리기 -->
+        <logger name="jdbc.resultsettable" level="OFF"/>
+    </springProfile>
+</configuration>

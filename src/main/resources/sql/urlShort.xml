@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="shortUrl">
+
+    <select id="existUrl" parameterType="String" resultType="Integer">
+      SELECT COUNT(*)
+      FROM url_info
+      WHERE origin_url=#{value}
+    </select>
+
+    <select id="getOriginUrl" parameterType="String" resultType="com.choimin.urlshort.model.UrlShortGetDto">
+      SELECT origin_url, short_url
+      FROM url_info
+      WHERE origin_url=#{originUrl}
+    </select>
+
+    <insert id="insertOriginUrl" parameterType="com.choimin.urlshort.model.UrlShortSetDto" useGeneratedKeys="true" keyProperty="seq">
+        INSERT INTO url_info (origin_url, short_url)
+        VALUES (#{originUrl}, null)
+    </insert>
+
+    <update id="updateShortUrl" parameterType="com.choimin.urlshort.model.UrlShortSetDto">
+        UPDATE url_info
+        SET short_url = #{shortUrl}
+        WHERE seq = #{seq}
+    </update>
+
+    <select id="getShortUrl" parameterType="String" resultType="String">
+        SELECT short_url
+        FROM short_url
+        WHERE #{value}
+    </select>
+
+</mapper>
+
