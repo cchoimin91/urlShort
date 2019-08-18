@@ -1,0 +1,23 @@
+spring:
+  profiles:
+    active: local
+
+
+  #DB
+  datasource:
+    url: jdbc:mariadb://localhost:3306/short
+    username: root
+    password: choimin
+    driver-class-name: org.mariadb.jdbc.Driver
+
+  #LOG
+  logging:
+    config: classpath:logback-spring.xml
+    file: ${spring.application.name}
+
+  freemarker:
+    suffix: .ftl
+server:
+  servlet:
+    context-path: /
+  port: 8080
