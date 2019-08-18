@@ -13,9 +13,8 @@ public class UrlShortMapper {
     private SqlSessionTemplate sqlSessionTemplate;
 
 
-
-    public Integer existUrl(String originUrl){
-        return sqlSessionTemplate.selectOne("existUrl",originUrl);
+    public Integer existUrl(String originUrl) {
+        return sqlSessionTemplate.selectOne("existUrl", originUrl);
     }
 
     public UrlShortGetDto getOriginUrl(String shortUrl){
@@ -28,5 +27,9 @@ public class UrlShortMapper {
 
     public void updateShortUrl(UrlShortSetDto urlShortSetDto){
         sqlSessionTemplate.update("updateShortUrl", urlShortSetDto);
+    }
+
+    public String findByOriginUrl(String shortUrl){
+        return sqlSessionTemplate.selectOne("findByOriginUrl", shortUrl);
     }
 }

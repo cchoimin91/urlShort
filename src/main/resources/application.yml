@@ -2,7 +2,6 @@ spring:
   profiles:
     active: local
 
-
   #DB
   datasource:
     url: jdbc:mariadb://localhost:3306/short
@@ -21,3 +20,7 @@ server:
   servlet:
     context-path: /
   port: 8080
+
+shorturl:
+  domain: http://localhost:8080/
+

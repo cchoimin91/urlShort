@@ -28,10 +28,10 @@
         WHERE seq = #{seq}
     </update>
 
-    <select id="getShortUrl" parameterType="String" resultType="String">
-        SELECT short_url
-        FROM short_url
-        WHERE #{value}
+    <select id="findByOriginUrl" parameterType="String" resultType="String">
+        SELECT origin_url
+        FROM url_info
+        WHERE short_url = BINARY #{value}
     </select>
 
 </mapper>

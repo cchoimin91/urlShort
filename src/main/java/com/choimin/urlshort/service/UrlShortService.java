@@ -6,6 +6,7 @@ import com.choimin.urlshort.exception.EmptyUrlException;
 import com.choimin.urlshort.exception.UrlFormatException;
 import com.choimin.urlshort.mapper.UrlShortMapper;
 import com.choimin.urlshort.model.UrlFormat;
+import com.choimin.urlshort.model.UrlShortDomain;
 import com.choimin.urlshort.model.UrlShortGetDto;
 import com.choimin.urlshort.model.UrlShortSetDto;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +21,9 @@ public class UrlShortService {
 
     @Autowired
     private UrlShortMapper urlShortMapper;
+
+    @Autowired
+    private UrlShortDomain urlShortDomain;
 
 
 
@@ -36,7 +40,7 @@ public class UrlShortService {
         if(existUrl(shortSetDto.getOriginUrl())){
             log.info("이미존재하는 URL 입니다. 입력 url : {}", shortSetDto.getOriginUrl());
             UrlShortGetDto result = urlShortMapper.getOriginUrl(shortSetDto.getOriginUrl());
-            result.setShortUrl(UrlFormat.makeUrl(result.getShortUrl()));
+            result.setShortUrl(urlShortDomain.getDomain() + result.getShortUrl());
             return result;
         }
 
@@ -54,7 +58,7 @@ public class UrlShortService {
 
         UrlShortGetDto result = new UrlShortGetDto();
         result.setOriginUrl(shortSetDto.getOriginUrl());
-        result.setShortUrl(UrlFormat.makeUrl(enCodeUrl));
+        result.setShortUrl(urlShortDomain.getDomain() + enCodeUrl);
 
         return result;
     }
@@ -69,6 +73,17 @@ public class UrlShortService {
     public Boolean existUrl(String originUrl){
         Integer count = urlShortMapper.existUrl(originUrl);
         return count>0?true:false;
+    }
+
+
+
+    /**
+     * 원본 Url을 조회합니다
+     * @param shortUrl
+     * @return
+     */
+    public String findByOriginUrl(String shortUrl){
+        return urlShortMapper.findByOriginUrl(shortUrl);
     }
 
 

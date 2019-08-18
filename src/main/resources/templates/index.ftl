@@ -53,16 +53,13 @@
             SHORTENING SERVICE
         </div>
 
-
         <div>
             <input type="text" id="inputUrl" class="inputUrl"name="inputUrl"/>
             <button class="button create" id="createBtn">입력</button>
             <button class="button clear" id="clearBtn">초기화</button>
         </div>
 
-        <div id="result">
-
-        </div>
+        <div id="result"></div>
     </div>
 
 </body>

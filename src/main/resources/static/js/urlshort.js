@@ -22,10 +22,15 @@ var urlShort = {
                     break;
             }
         });
+
+        $('#inputUrl').keypress(function (e) {
+            if (e.keyCode == 13){
+                urlShort.createUrlShort();
+            }
+        })
     },
 
     createUrlShort : function () {
-
 	    var sendData = {
             'originUrl' :  $('#inputUrl').val()
         }
@@ -51,6 +56,7 @@ var urlShort = {
 	 },
 
     inputInit : function () {
+        $("#inputUrl").focus();
         $("#inputUrl").val('');
         $('#result').empty();
     }
