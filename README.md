@@ -17,6 +17,11 @@ URL을 입력받아 짧게 줄여주고 단축된 URL 을 입력하면 원래URL
 
 프로세스
 ----
+* 이미 등록된 단축URL을 생성시
+![process_1](https://user-images.githubusercontent.com/33255462/63277479-61283a80-c2e0-11e9-984a-8d361eda9d97.png)
+
+* 새로운 단축URL 생성시
+![process_2](https://user-images.githubusercontent.com/33255462/63277191-de06e480-c2df-11e9-8d4a-66df71f85a2f.png)
 
 문제해결방법
 ----
