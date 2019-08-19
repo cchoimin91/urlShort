@@ -8,18 +8,11 @@ URL을 입력받아 짧게 줄여주고 단축된 URL 을 입력하면 원래URL
 
 개발환경
 ====
-JAVA 1.8
-
-
-SpringBoot 2.1.7
-
-
-MariaDB 5.7.21
-
-
-Gradle 5.4.1
-
-
+JAVA 1.8  
+SpringBoot 2.1.7  
+MariaDB 5.7.21  
+Gradle 5.4.1  
+JQuery 3.1.1  
 
 
 접근방법
