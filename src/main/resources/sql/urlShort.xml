@@ -8,7 +8,7 @@
     <select id="existUrl" parameterType="String" resultType="Integer">
       SELECT COUNT(*)
       FROM url_info
-      WHERE origin_url=#{value}
+      WHERE origin_url= BINARY #{value}
     </select>
 
     <select id="getOriginUrl" parameterType="String" resultType="com.choimin.urlshort.model.UrlShortGetDto">

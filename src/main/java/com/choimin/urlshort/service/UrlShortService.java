@@ -3,6 +3,7 @@ package com.choimin.urlshort.service;
 
 import com.choimin.urlshort.core.Base62;
 import com.choimin.urlshort.exception.EmptyUrlException;
+import com.choimin.urlshort.exception.NotExistUrlException;
 import com.choimin.urlshort.exception.UrlFormatException;
 import com.choimin.urlshort.mapper.UrlShortMapper;
 import com.choimin.urlshort.model.UrlFormat;
@@ -83,7 +84,14 @@ public class UrlShortService {
      * @return
      */
     public String findByOriginUrl(String shortUrl){
-        return urlShortMapper.findByOriginUrl(shortUrl);
+        String originUrl = urlShortMapper.findByOriginUrl(shortUrl);
+
+        if(StringUtils.isBlank(originUrl)){
+            log.warn("ORIGIN URL NOT FIND");
+            throw new NotExistUrlException("short Url을 먼저 생성해주세요");
+        }
+
+        return originUrl;
     }
 
 
@@ -105,5 +113,4 @@ public class UrlShortService {
             throw new UrlFormatException("Url 형식은 [http://], [https://]로 시작해야 합니다");
         }
     }
-
 }
