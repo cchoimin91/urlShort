@@ -1,6 +1,7 @@
 package com.choimin.urlshort.exception.handler;
 
 import com.choimin.urlshort.exception.EmptyUrlException;
+import com.choimin.urlshort.exception.NotExistUrlException;
 import com.choimin.urlshort.exception.UrlFormatException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -33,6 +34,18 @@ public class ExceptionsHandler {
         ErrorStatus errorStatus= new ErrorStatus();
         errorStatus.setCode(ErrorCode.CODE_0000.getCode());
         errorStatus.setDescription(ErrorCode.CODE_0000.getDescription());
+        errorStatus.setDetail(e.getMessage());
+
+        return new ResponseEntity<ErrorStatus>(errorStatus,HttpStatus.BAD_REQUEST);
+    }
+
+
+    @ExceptionHandler({NotExistUrlException.class})
+    @ResponseBody
+    public ResponseEntity<ErrorStatus> notExistUrlExceptionHendler(HttpServletRequest req, NotExistUrlException e){
+        ErrorStatus errorStatus= new ErrorStatus();
+        errorStatus.setCode(ErrorCode.CODE_0001.getCode());
+        errorStatus.setDescription(ErrorCode.CODE_0001.getDescription());
         errorStatus.setDetail(e.getMessage());
 
         return new ResponseEntity<ErrorStatus>(errorStatus,HttpStatus.BAD_REQUEST);
