@@ -20,7 +20,7 @@ USE `short`;
 CREATE TABLE IF NOT EXISTS `url_info` (
   `seq` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '키',
   `origin_url` varchar(255) NOT NULL COMMENT '원본URL',
-  `short_url` varchar(255) DEFAULT NULL COMMENT '줄인URL',
+  `short_url` varchar(7) DEFAULT NULL COMMENT '줄인URL',
   PRIMARY KEY (`seq`),
   KEY `idx_url_short_1` (`origin_url`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
