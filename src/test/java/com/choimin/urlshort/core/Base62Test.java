@@ -95,4 +95,23 @@ public class Base62Test {
     }
 
 
+
+    @Test
+    public void 인코딩문자열길이확인(){
+        //given
+        boolean res = true;
+        long keyCount = 1000000000; //키
+
+        //when
+        for(long i=1 ; i<=keyCount; i++){
+            String e = Base62.encode(i);
+            if(e.length()==8){
+               log.info("8자리가 되는 key : {}", i);
+                res = false;
+                break;
+            }
+        }
+        //then
+        assertTrue(res);
+    }
 } // CLASS END

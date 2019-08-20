@@ -12,17 +12,23 @@ public class Base62 {
      */
     public static String encode(long dbKey) {
         if (dbKey < 0) {
-            throw new IllegalArgumentException("dbkey는 0보다 커야 합니다.");
+            throw new IllegalArgumentException("dbKey는 0보다 커야 합니다.");
         }
 
-        String encodeValue = "";
+        // 최초값 Initializing
+        if(dbKey == 0){
+            return "a";
+        }
 
+        String result = "";
         while (dbKey > 0) {
-            encodeValue = BASE62_CHARACTERS.charAt((int) (dbKey % 62)) + encodeValue;
+            if(!result.equals("")) {
+                dbKey -= 1;
+            }
+            result = BASE62_CHARACTERS.charAt((int) (dbKey % 62)) + result;
             dbKey /= 62;
         }
-
-        return encodeValue;
+        return result;
     }
 
 
@@ -34,22 +40,19 @@ public class Base62 {
     public static long decode(String base62Encode) {
         for (char character : base62Encode.toCharArray()) {
             if (!BASE62_CHARACTERS.contains(String.valueOf(character))) {
-                throw new IllegalArgumentException("BASE62_CHARACTERS가 아닙니다 input: " + character);
+                throw new IllegalArgumentException("BASE62_CHARACTERS가 아닙니다  파라미터 : " + character);
             }
         }
 
-        long dbKey = 0;
-
+        long result = 0;
         base62Encode = new StringBuffer(base62Encode).reverse().toString();
-
         long count = 1;
 
         for (char character : base62Encode.toCharArray()) {
-            dbKey += BASE62_CHARACTERS.indexOf(character) * count;
+            result += (BASE62_CHARACTERS.indexOf(character) + 1) * count;
             count *= 62;
         }
-
-        return dbKey;
+        return result - 1;
     }
 
 }
