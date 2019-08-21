@@ -60,6 +60,11 @@ short_url : seq를 인코딩한 문자열
 
 6. 브라우저에 localhost:8080를 실행합니다. 
 
+실행화면
+----
+![urlshort_main](https://user-images.githubusercontent.com/33255462/63429554-55aa5000-c455-11e9-8bea-35762a783c42.png)
+![urlshort_valid](https://user-images.githubusercontent.com/33255462/63429476-1f6cd080-c455-11e9-963e-3b2562bb2c2c.png)
+![urlshort_input](https://user-images.githubusercontent.com/33255462/63429420-ee8c9b80-c454-11e9-8981-87d332e1f512.png)
 
 
 현재 문제점 & 추후 개선방안
