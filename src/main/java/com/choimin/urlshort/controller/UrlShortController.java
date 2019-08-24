@@ -34,7 +34,7 @@ public class UrlShortController {
     @ResponseBody
     @PostMapping(value = "/createUrlShort", produces = MediaType.APPLICATION_JSON_VALUE)
     public UrlShortGetDto createUrlShort(@RequestBody UrlShortSetDto urlShortSetDto) {
-        log.info("입력 Url : {}", urlShortSetDto.toString());
+        log.info("입력 Url : {}", urlShortSetDto.getOriginUrl());
 
         UrlShortGetDto shortUrl = urlShortService.createShortUrl(urlShortSetDto);
 
