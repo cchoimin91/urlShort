@@ -15,11 +15,6 @@ public class Base62 {
             throw new IllegalArgumentException("dbKey는 0보다 커야 합니다.");
         }
 
-        // 최초값 Initializing
-        if(dbKey == 0){
-            return "a";
-        }
-
         String result = "";
         while (dbKey > 0) {
             if(!result.equals("")) {
