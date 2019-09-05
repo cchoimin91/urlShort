@@ -3,7 +3,6 @@ package com.choimin.urlshort.exception.handler;
 import com.choimin.urlshort.exception.EmptyUrlException;
 import com.choimin.urlshort.exception.NotExistUrlException;
 import com.choimin.urlshort.exception.UrlFormatException;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
-@Slf4j
 @ControllerAdvice
 public class ExceptionsHandler {
 
