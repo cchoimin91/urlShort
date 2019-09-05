@@ -45,7 +45,7 @@ public class UrlShortController {
 
 
     @ApiOperation(value = "입력받은 shorUrl을 리다이랙트 합니다", hidden = true)
-    @GetMapping(value = "/{shortUrl}")
+    @GetMapping(value = "/{shortUrl:^[A-Za-z0-9]{1,8}$}")
     public String redirect(@PathVariable("shortUrl") String shortUrl){
         log.info("입력 Url : {}", shortUrl );
 
